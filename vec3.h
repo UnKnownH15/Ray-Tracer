@@ -43,6 +43,14 @@ class vec3 {
     double length_squared() const {
         return e[0]*e[0] + e[1]*e[1] + e[2]*e[2];
     }
+
+    static vec3 randon() {
+        return vec3(random_double(),random_double(),random_double());
+    }
+
+    static vec3 random(double min, double max) {
+        return vec3(random_double(min, max),random_double(min,max), random_double(min,max));
+    }
 };
 
 // point3 is just an alias for vec3, but useful for geometric clarity in the code.
@@ -93,6 +101,21 @@ inline vec3 cross(const vec3& u, const vec3& v) {
 
 inline vec3 unit_vector(const vec3& v) {
     return v / v.length();
+}
+
+inline vec3 random_unit_vec() {
+    while (true) {
+        auto p = vec3::random(-1, 1);
+        if (1e-160 < p.length_squared() && p.length_squared() <= 1) return p/sqrt(p.length_squared());
+    }
+}
+
+inline vec3 random_on_surface(const vec3& normal) {
+    vec3 unit_surf = random_unit_vec();
+    if (dot(normal, unit_surf) > 0)
+        return unit_surf;
+    else
+        return -unit_surf;
 }
 
 #endif
