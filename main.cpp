@@ -23,6 +23,7 @@ int main() {
     cam.sample_per_pixel = 50;
 
     cam.render(world);
+    cout << "hello";
 
     return 0;
 }
