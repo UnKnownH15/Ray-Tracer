@@ -5,7 +5,7 @@
 #include "hittable.h"
 #include "rtweekend.h"
 
-std::ofstream out("imag.ppm");
+//std::ofstream out("imag.ppm");
 
 class camera {
 public:
@@ -17,7 +17,7 @@ public:
     void render(const hittable& world) {
         initialize();
 
-        std::ofstream out("imagrrrrr.ppm");
+        std::ofstream out("test.png");
 
         out << "P3\n" << image_width << ' ' << image_height << "\n255\n";
 
